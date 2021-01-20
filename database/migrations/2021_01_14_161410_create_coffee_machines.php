@@ -18,6 +18,7 @@ class CreateCoffeeMachines extends Migration
             $table->string('jooginimi');
             $table->integer('topsepakis');
             $table->integer('topsejuua');
+            $table->timestamps();
         });
     }
 

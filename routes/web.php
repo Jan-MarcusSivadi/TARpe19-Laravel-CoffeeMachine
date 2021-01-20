@@ -14,11 +14,16 @@ use App\Http\Controllers\CoffeeMachineController;
 | contains the "web" middleware group. Now create something great!
 |
 */
+
+// kõik vajalikud päringud, mis on seotud tava-kasutajaga
 Route::get("/kohviautomaat", [CoffeeMachineController::class, "index"]);
 Route::get("/kohviautomaat/{machine}/decrement", [CoffeeMachineController::class, "decrement"])->name('coffeeMachine.decrement');
 
-Route::get("/admin", [CoffeeMachineController::class, "admin"]);
-Route::get("/kohviautomaat/{machine}/increment", [CoffeeMachineController::class, "increment"])->name('coffeeMachine.increment');
+// kõik vajalikud päringud, mis on seotud haldajaga
+Route::get("/admin", [CoffeeMachineController::class, "admin"])->name('coffeeMachine.admin');
+Route::get("/admin/create", [CoffeeMachineController::class, "create"])->name('coffeeMachine.create');
+Route::post("/admin/store", [CoffeeMachineController::class, "store"])->name('coffeeMachine.store');
+Route::get("/admin/{machine}/increment", [CoffeeMachineController::class, "increment"])->name('coffeeMachine.increment');
 
 Route::get('/', function () {
     return view('welcome');

@@ -4,7 +4,13 @@
 <div>
     <h1>Kohviautomaat Haldusleht</h1>
     <hr class="hr-1">
+    <x-alert />
+    <!-- Lisamise nupp, mis viib kasutaja joogi lisamise lehele -->
+    <div class="d-flex justify-content-center buttons">
+        <a class="btn btn-primary" href="{{route('coffeeMachine.create')}}">Lisa uus Jook</a>
+    </div>
 
+    <!-- Loetelu andmebaasi andmetest -->
     <ul class="list-group">
         
         @foreach($joogid as $jook)
@@ -20,6 +26,7 @@
                     <a class="btn btn-success" href="#">Korras</a>
                 @endif
             </li>
+            
             <div class="machine-item"></div>
 
         @endforeach

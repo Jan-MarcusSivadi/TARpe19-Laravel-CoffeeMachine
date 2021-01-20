@@ -15,10 +15,18 @@ class CoffeeMachine extends Model
      * @var array
      */
     protected $fillable = [
+        // täidetavad väljad
         'jooginimi',
         'topsepakis',
         'topsejuua',
     ];
 
-    public $timestamps = false;
+    protected $attributes = [
+        // vaikimisi väljad
+        'topsepakis' => 50,
+        'topsejuua' => 0,
+    ];
+
+    // tee võimalikuks kasutada ajaga seotud atribuute
+    public $timestamps = true;
 }

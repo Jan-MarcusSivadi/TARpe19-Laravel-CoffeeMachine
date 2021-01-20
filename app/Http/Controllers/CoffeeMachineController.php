@@ -4,31 +4,21 @@ namespace App\Http\Controllers;
 use Illuminate\Support\Facades\DB;
 use App\Models\CoffeeMachine;
 use Illuminate\Http\Request;
+use App\Http\Requests\DrinkCreateRequest;
+use Validator;
 
 class CoffeeMachineController extends Controller
 {
     public function index() {
-        
-        
-        // loo uus kohvimasin, kui seda pole veel loodud (et ei tekiks konflikti kohvimasinate arvuga, sest on ainult vaja ühele kasutajale korraga kohvi teha)
-        // if($joogid->isEmpty())
-        // {
-            //     $data = [
-                //         'jooginimi' => 'kohv',
-                //         'topsepakis' => 50,
-                //         'topsejuua' => 2,
-                //     ];
-                //     CoffeeMachine::create($data);
-                // }
-                
         // tagasta kohvimasina vaade koos muutujatega
-        $joogid = CoffeeMachine::all();
+        $joogid = CoffeeMachine::orderBy('created_at', 'DESC')->get();
         $count = CoffeeMachine::count();
         return view('coffeeMachine.index', compact('count', 'joogid'));
     }
 
     public function decrement(CoffeeMachine $machine)
     {
+        // vähenda joodavate topside arvu 1 võrra
         $machine->decrement('topsejuua');
         return redirect()->back();
     }
@@ -36,13 +26,26 @@ class CoffeeMachineController extends Controller
     public function admin()
     {
         // tagasta kohvimasina vaade muutujatega
-        $joogid = CoffeeMachine::all();
+        $joogid = CoffeeMachine::orderBy('created_at', 'DESC')->get();
         return view('coffeeMachine.admin', compact('joogid'));
     }
 
+    public function create()
+    {
+        // saada kasutaja uue joogi lisamis-lehele
+        return view('coffeeMachine.create');
+    }
+
+    public function store(DrinkCreateRequest $request)
+    {
+        // salvesta uus jook andmebaasi
+        CoffeeMachine::create($request->all());
+        return redirect(route('coffeeMachine.admin'))->with('message','Joogi lisamine õnnestus!');
+    }
 
     public function increment(CoffeeMachine $machine)
     {
+        // suurenda 'topsejuua' atribuuti 'topsepakis' võrra, kui ($topsejuua <= $topsepakis)
         $topsepakis = $machine->topsepakis;
         $topsejuua = $machine->topsejuua;
         if ($topsejuua <= $topsepakis) $machine->increment('topsejuua', $topsepakis);
