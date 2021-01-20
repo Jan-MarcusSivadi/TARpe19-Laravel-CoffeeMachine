@@ -38,9 +38,7 @@
 
                     <li class="list-group-item d-flex justify-content-between align-items-center" id="vertical-align-item">
                         <a class="padding-part">Topse Juua: {{$jook->topsejuua}}</a>
-                        <a class="btn btn-primary" href="{{route('coffeeMachine.decrement', $jook->id)}}" 
-                        src="save_scroll.js"
-                        >Joo ära 1 tops</a>
+                        <a class="btn btn-primary padding-part" href="{{route('coffeeMachine.decrement', $jook->id)}}">Joo ära 1 tops</a>
                     </li>
                     <div class="machine-item"></div>
                 @endif

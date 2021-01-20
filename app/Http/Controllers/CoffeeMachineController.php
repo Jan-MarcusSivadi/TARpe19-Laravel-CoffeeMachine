@@ -51,4 +51,12 @@ class CoffeeMachineController extends Controller
         if ($topsejuua <= $topsepakis) $machine->increment('topsejuua', $topsepakis);
         return redirect()->back();
     }
+
+    public function delete(CoffeeMachine $machine)
+    {
+        // kustuta jook andmebaasist
+        $machine->delete();
+        $nimi = $machine->jooginimi;
+        return redirect()->back()->with('message', '\''.$nimi.'\'' . ' eemaldati.');
+    }
 }

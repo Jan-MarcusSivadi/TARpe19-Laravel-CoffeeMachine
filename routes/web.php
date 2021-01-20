@@ -24,6 +24,7 @@ Route::get("/admin", [CoffeeMachineController::class, "admin"])->name('coffeeMac
 Route::get("/admin/create", [CoffeeMachineController::class, "create"])->name('coffeeMachine.create');
 Route::post("/admin/store", [CoffeeMachineController::class, "store"])->name('coffeeMachine.store');
 Route::get("/admin/{machine}/increment", [CoffeeMachineController::class, "increment"])->name('coffeeMachine.increment');
+Route::delete("/admin/{machine}/delete", [CoffeeMachineController::class, "delete"])->name('coffeeMachine.delete');
 
 Route::get('/', function () {
     return view('welcome');
