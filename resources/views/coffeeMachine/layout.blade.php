@@ -11,7 +11,7 @@
     <script src="https://kit.fontawesome.com/3d8af50c2d.js" crossorigin="anonymous"></script>
     <!-- Style CSS -->
     <!-- <link rel="stylesheet" href="public/css/style.css"> -->
-    <title>Coffee Machine Application</title>
+    <title>Kohviautomaat</title>
 </head>
 <body>
     <style>
@@ -171,9 +171,14 @@
             cursor: pointer;
         }
 
+        .machine-item {
+            margin-bottom: 1rem;
+        }
 
-
-        
+        .padding-part {
+            padding-left: 1rem;
+            padding-right: 1rem;
+        }
 
     </style>
 
